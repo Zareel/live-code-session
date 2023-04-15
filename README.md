@@ -88,6 +88,8 @@ import app from "./app.js";
   }
 })();
 
+```
+
 ## Create .env.example
 
 create .env file in the root folder
@@ -154,3 +156,5 @@ import config from "./src/config/index.js";
 })();
 
 ```
+
+## 1 hr
