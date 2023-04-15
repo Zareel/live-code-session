@@ -27,6 +27,22 @@ const userSchema = new mongoose.Schema({
     // forgot password fucnctionality
         forgotPasswordToken: String,
         forgotPasswordExpiry:Date,
+   
 }, {timestamps:true})
+
+   // encrypt password before saving
+   userSchema.pre("save", async function(next){
+    if(!this.isModified("password")) return next()
+    this.password = await bcrypt.hash(this.password, 10)
+    next()
+   })
+
+   //compare the password
+   userSchema.method = {
+    comparePassword : async function(enteredPassword){
+        return await bcrypt.comapare(enteredPassword, this.password)
+    }
+   }
+
 
 export default mongoose.model("User", userSchema)
