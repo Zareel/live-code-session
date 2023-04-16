@@ -43,15 +43,15 @@ userSchema.pre("save", async function(next){
     next()
 })
 
+  //compare password
 userSchema.method = {
-    //compare password
     comparePassword: async function(enteredPassword){
         return await bcrypt.compare(enteredPassword, this.password)
     },
 
     // generate jwt token
     getJWTtoken: function(){
-        JWT.sign({_id: this._id, role: this._role}, config.JWT_SECRET, {expiresIn:config.JWT_EXPIRYX})
+        JWT.sign({_id: this._id, role: this._role}, config.JWT_SECRET, {expiresIn:config.JWT_EXPIRY})
     },
 
     //generate forgot password token
